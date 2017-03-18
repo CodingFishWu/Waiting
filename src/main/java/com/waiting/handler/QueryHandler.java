@@ -38,14 +38,16 @@ public class QueryHandler implements WxMpMessageHandler {
         double myAvg = 0;
         int count = 0;
         int myCount = 0;
+        int mySize = 0;
         for (Score score : scores) {
             count += score.getScore();
             if (score.getUserId().equals(user.getId())) {
                 myCount += score.getScore();
+                mySize += 1;
             }
         }
         avg = ((double)count) / scores.size();
-        myAvg = ((double)myCount) / scores.size();
+        myAvg = ((double)myCount) / mySize;
         result.append("所查询的号码已被").append(scores.size()).append("个人登记过\n\n")
                 .append("平均等待时间为:").append(avg).append("分钟\n\n")
                 .append("其中你自己记录的平均值为:").append(myAvg).append("分钟");
