@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by fish on 17/03/2017.
@@ -23,5 +24,10 @@ public class ScoreSvcImpl implements ScoreSvc{
 
 //        scoreRepo.fin
         return scoreRepo.save(score);
+    }
+
+    @Override
+    public List<Score> findByMobile(String mobile) {
+        return scoreRepo.findByMobile(mobile);
     }
 }

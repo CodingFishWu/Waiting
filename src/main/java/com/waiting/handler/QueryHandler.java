@@ -4,6 +4,8 @@ import com.waiting.dao.ScoreRepo;
 import com.waiting.dao.UserRepo;
 import com.waiting.entity.Score;
 import com.waiting.entity.User;
+import com.waiting.svc.ScoreSvc;
+import com.waiting.svc.UserSvc;
 import me.chanjar.weixin.common.exception.WxErrorException;
 import me.chanjar.weixin.common.session.WxSessionManager;
 import me.chanjar.weixin.mp.api.WxMpMessageHandler;
@@ -23,15 +25,15 @@ import java.util.Map;
 @Component
 public class QueryHandler implements WxMpMessageHandler {
     @Autowired
-    private ScoreRepo scoreRepo;
+    private ScoreSvc scoreSvc;
     @Autowired
-    private UserRepo userRepo;
+    private UserSvc userSvc;
     @Override
     public WxMpXmlOutMessage handle(WxMpXmlMessage wxMessage, Map<String, Object> context, WxMpService wxMpService, WxSessionManager sessionManager) throws WxErrorException {
         StringBuilder result = new StringBuilder();
         String mobile = wxMessage.getContent();
-        List<Score> scores = scoreRepo.findByMobile(mobile);
-        User user = userRepo.findByOpenid(wxMessage.getFromUser());
+        List<Score> scores = scoreSvc.findByMobile(mobile);
+        User user = userSvc.createOrGetByOpenid(wxMessage.getFromUser());
 
         // calculate
         double avg = 0;
