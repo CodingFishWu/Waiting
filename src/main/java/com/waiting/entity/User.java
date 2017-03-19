@@ -1,6 +1,7 @@
 package com.waiting.entity;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by fish on 17/03/2017.
@@ -18,6 +19,8 @@ public class User {
     private String openid;
     @Column(name = "studentid")
     private String studentid;
+    @Column(name = "last_submit")
+    private Date lastSubmit;
 
     public Integer getId() {
         return id;
@@ -35,19 +38,27 @@ public class User {
         this.username = username;
     }
 
-    public String getOpeinid() {
-        return openid;
-    }
-
-    public void setOpeinid(String opeinid) {
-        this.openid = opeinid;
-    }
-
     public String getStudentid() {
         return studentid;
     }
 
     public void setStudentid(String studentid) {
         this.studentid = studentid;
+    }
+
+    public String getOpenid() {
+        return openid;
+    }
+
+    public void setOpenid(String openid) {
+        this.openid = openid;
+    }
+
+    public Date getLastSubmit() {
+        return lastSubmit;
+    }
+
+    public void setLastSubmit(Date lastSubmit) {
+        this.lastSubmit = lastSubmit;
     }
 }

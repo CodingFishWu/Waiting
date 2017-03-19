@@ -28,7 +28,7 @@ public class UserSvcImpl implements UserSvc {
         }
         else {
             user = new User();
-            user.setOpeinid(openid);
+            user.setOpenid(openid);
             return userRepo.save(user);
         }
     }
